@@ -40,3 +40,15 @@ class RESTManager:
             df[key] = dt[key]["value"]
         #df = pd.DataFrame(df)
         return df
+    
+    def get_asset_id_quote(self, uid):
+        dt_text = self.get(f"asset/{uid}/quote")
+        dt = json.loads(dt_text)
+        df = []
+        for i in range(len(dt)):
+            tmp = {}
+            for key in dt[i]:
+                tmp[key] = dt[i][key]["value"]
+            df.append(tmp)
+        df = pd.DataFrame(df)
+        return df
